@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Media;
 
 namespace TouchPoints
 {
-    public class TouchPoint : INotifyPropertyChanged
+    public class TouchModel : INotifyPropertyChanged
     {
         private PointerPoint _point;
         private bool _dead;
@@ -13,7 +13,7 @@ namespace TouchPoints
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public TouchPoint(PointerPoint point)
+        public TouchModel(PointerPoint point)
         {
             _point = point;
         }
@@ -28,8 +28,20 @@ namespace TouchPoints
                 {
                     _point = value;
                     OnPropertyChanged("Description");
+                    OnPropertyChanged("X");
+                    OnPropertyChanged("Y");
                 }
             }
+        }
+
+        public double X
+        {
+            get { return _point.Position.X; }
+        }
+
+        public double Y
+        {
+            get { return _point.Position.Y; }
         }
 
         public bool Dead

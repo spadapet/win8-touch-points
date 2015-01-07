@@ -11,12 +11,12 @@ namespace TouchPoints
     public sealed partial class MainPage : Page
     {
         private CoreWindow _window;
-        private ObservableCollection<TouchPoint> _points;
+        private ObservableCollection<TouchModel> _points;
         private Storyboard _storyboard;
 
         public MainPage()
         {
-            _points = new ObservableCollection<TouchPoint>();
+            _points = new ObservableCollection<TouchModel>();
 
             _storyboard = new Storyboard();
             _storyboard.Completed += OnStoryboardCompleted;
@@ -57,14 +57,14 @@ namespace TouchPoints
             _storyboard.Begin();
         }
 
-        public IList<TouchPoint> Points
+        public IList<TouchModel> Points
         {
             get { return _points; }
         }
 
         private void OnPointerReleased(CoreWindow sender, PointerEventArgs args)
         {
-            foreach (TouchPoint point in _points)
+            foreach (TouchModel point in _points)
             {
                 if (point.Point.PointerId == args.CurrentPoint.PointerId)
                 {
@@ -76,7 +76,7 @@ namespace TouchPoints
 
         private void OnPointerMoved(CoreWindow sender, PointerEventArgs args)
         {
-            foreach (TouchPoint point in _points)
+            foreach (TouchModel point in _points)
             {
                 if (point.Point.PointerId == args.CurrentPoint.PointerId)
                 {
@@ -89,7 +89,7 @@ namespace TouchPoints
         {
             if (args.CurrentPoint.PointerDevice.PointerDeviceType == PointerDeviceType.Touch)
             {
-                _points.Add(new TouchPoint(args.CurrentPoint));
+                _points.Add(new TouchModel(args.CurrentPoint));
             }
         }
     }

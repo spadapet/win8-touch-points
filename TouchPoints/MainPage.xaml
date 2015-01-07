@@ -9,6 +9,28 @@
     DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <ItemsControl ItemsSource="{Binding Points}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Ellipse Fill="{Binding ColorBrush}" Opacity="0.5" Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Ellipse.RenderTransform>
+                            <TransformGroup>
+                                <TranslateTransform X="-40" Y="-40" />
+                                <TranslateTransform X="{Binding X}" Y="{Binding Y}" />
+                            </TransformGroup>
+                        </Ellipse.RenderTransform>
+                    </Ellipse>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        
         <ItemsControl HorizontalAlignment="Left" VerticalAlignment="Top" ItemsSource="{Binding Points}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
@@ -16,6 +38,5 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-
     </Grid>
 </Page>
